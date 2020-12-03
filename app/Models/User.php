@@ -11,6 +11,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function avatar(){
+        return $this->belongsTo('App\Models\Avatar');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +22,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'age',
+        'avatar_id',
         'email',
         'password',
     ];

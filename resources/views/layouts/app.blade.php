@@ -70,6 +70,8 @@
                                 </div>
                             </li>
                         @endguest
+                        <li><a href="/create_avatar">Create an Avatar</a></li>
+                        <li><a href="/all_users">See all users</a></li>
                     </ul>
                 </div>
             </div>

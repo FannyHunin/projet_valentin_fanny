@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    
+    @include('layouts.app')
 
     <script src="{{asset('js/app.js')}}"></script>
 </body>
