@@ -69,7 +69,12 @@
                                     </form>
                                 </div>
                             </li>
+
                         @endguest
+                        @auth
+                            <li><a href="/create_gallery">Create a Gallery</a></li>
+                            <li><a href="/create_img">Create an image</a></li>
+                        @endauth
                         <li><a href="/create_avatar">Create an Avatar</a></li>
                         <li><a href="/all_users">See all users</a></li>
                     </ul>

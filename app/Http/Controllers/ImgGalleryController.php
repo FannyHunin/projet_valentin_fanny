@@ -24,7 +24,8 @@ class ImgGalleryController extends Controller
      */
     public function create()
     {
-        //
+        $galleryData = ImgGallery::all();
+        return view('pages.create_gallery', compact('galleryData'));
     }
 
     /**
@@ -35,7 +36,14 @@ class ImgGalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => "required"
+        ]);
+
+        $newGallery = new ImgGallery;
+        $newGallery->name = $request->name;
+        $newGallery->save();
+        return redirect()->back();
     }
 
     /**
@@ -44,9 +52,10 @@ class ImgGalleryController extends Controller
      * @param  \App\Models\ImgGallery  $imgGallery
      * @return \Illuminate\Http\Response
      */
-    public function show(ImgGallery $imgGallery)
+    public function show($id)
     {
-        //
+        $galleryData = ImgGallery::find($id);
+        return view('pages.show_gallery', compact('galleryData'));
     }
 
     /**
@@ -55,9 +64,10 @@ class ImgGalleryController extends Controller
      * @param  \App\Models\ImgGallery  $imgGallery
      * @return \Illuminate\Http\Response
      */
-    public function edit(ImgGallery $imgGallery)
+    public function edit($id)
     {
-        //
+        $galleryData = ImgGallery::find($id);
+        return view('pages.edit_gallery', compact('galleryData'));
     }
 
     /**
@@ -67,9 +77,12 @@ class ImgGalleryController extends Controller
      * @param  \App\Models\ImgGallery  $imgGallery
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ImgGallery $imgGallery)
+    public function update(Request $request, $id)
     {
-        //
+        $newGallery = ImgGallery::find($id);
+        $newGallery->name = $request->name;
+        $newGallery->save();
+        return redirect('/create_gallery');
     }
 
     /**
@@ -78,8 +91,10 @@ class ImgGalleryController extends Controller
      * @param  \App\Models\ImgGallery  $imgGallery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ImgGallery $imgGallery)
+    public function destroy($id)
     {
-        //
+        $newGallery = ImgGallery::find($id);
+        $newGallery->delete();
+        return redirect('/create_gallery');
     }
 }

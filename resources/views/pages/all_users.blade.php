@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts.app')
 @section('content')
 <div class="row">
     <h1>All Users : </h1>

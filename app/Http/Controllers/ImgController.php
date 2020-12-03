@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Img;
+use App\Models\ImgGallery;
 use Illuminate\Http\Request;
 
 class ImgController extends Controller
@@ -24,7 +25,8 @@ class ImgController extends Controller
      */
     public function create()
     {
-        //
+        $galleryData = ImgGallery::all();
+        return view('pages.create_img', compact('galleryData'));
     }
 
     /**
@@ -35,7 +37,18 @@ class ImgController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'src'=>'required',
+            'gallery_id'=>'required',
+        ]);
+
+        $newImg = new Img;
+        $newImg->src = $request->file('src')->hashName();
+        $request->file('src')->storePublicly('images', 'public');
+        $newImg->gallery_id = $request->gallery_id;
+        $newImg->save();
+
+        return redirect()->back();
     }
 
     /**
