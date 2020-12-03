@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Img;
 use App\Models\ImgGallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImgController extends Controller
 {
@@ -15,7 +16,8 @@ class ImgController extends Controller
      */
     public function index()
     {
-        //
+        $allImg = Img::all();
+        return view('pages.all_img', compact('allImg'));
     }
 
     /**
@@ -91,8 +93,11 @@ class ImgController extends Controller
      * @param  \App\Models\Img  $img
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Img $img)
+    public function destroy($id)
     {
-        //
+        $allImg = Img::find($id);
+        $allImg->delete();
+        Storage::disk('public')->delete('images/'.$allImg->src);
+        return redirect()->back();
     }
 }

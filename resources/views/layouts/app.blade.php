@@ -67,16 +67,23 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    <ul style="list-style: none">
+                                        @auth
+                                            <li><a href="/create_gallery">Create a Gallery</a></li>
+                                            <li><a href="/create_img">Create an image</a></li>
+                                            <li><a href="/all_img">All images</a></li>
+                                        @endauth
+                                        <li><a href="/create_avatar">Create an Avatar</a></li>
+                                        <li><a href="/all_users">See all users</a></li>
+                                    </ul>
                                 </div>
                             </li>
-
-                        @endguest
-                        @auth
-                            <li><a href="/create_gallery">Create a Gallery</a></li>
-                            <li><a href="/create_img">Create an image</a></li>
-                        @endauth
-                        <li><a href="/create_avatar">Create an Avatar</a></li>
-                        <li><a href="/all_users">See all users</a></li>
+                            
+                            @endguest
+                            <li><a href="/create_avatar">Create an Avatar</a></li>
+                            <li><a href="/all_users">See all users</a></li>
+                        
+                        
                     </ul>
                 </div>
             </div>

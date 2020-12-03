@@ -45,3 +45,5 @@ Route::post('/update_gallery/{id}', [ImgGalleryController::class, 'update']);
 
 Route::get('/create_img', [ImgController::class, 'create']);
 Route::post('/store_img', [ImgController::class, 'store']);
+Route::get('/all_img', [ImgController::class, 'index']);
+Route::get('/delete_img/{id}', [ImgController::class, 'destroy']);

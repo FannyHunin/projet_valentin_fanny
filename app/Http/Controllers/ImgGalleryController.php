@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ImgGallery;
 use Illuminate\Http\Request;
+use App\Models\Img;
 
 class ImgGalleryController extends Controller
 {
@@ -54,8 +55,9 @@ class ImgGalleryController extends Controller
      */
     public function show($id)
     {
+        $imgData = Img::all();
         $galleryData = ImgGallery::find($id);
-        return view('pages.show_gallery', compact('galleryData'));
+        return view('pages.show_gallery', compact('galleryData', 'imgData'));
     }
 
     /**

@@ -16,7 +16,7 @@ class CreateImgsTable extends Migration
         Schema::create('imgs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("gallery_id");
-            $table->foreign("gallery_id")->references('id')->on('img_galleries');
+            $table->foreign("gallery_id")->references('id')->on('img_galleries')->onDelete('cascade');
             $table->char('src', 60);
             $table->timestamps();
         });
