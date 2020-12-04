@@ -47,3 +47,17 @@ Route::get('/create_img', [ImgController::class, 'create']);
 Route::post('/store_img', [ImgController::class, 'store']);
 Route::get('/all_img', [ImgController::class, 'index']);
 Route::get('/delete_img/{id}', [ImgController::class, 'destroy']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', function() {
+    return view('home');
+})->name('home')->middleware('auth');
